@@ -1,0 +1,31 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+<style>
+   .post-body {
+       border: 2px dotted black;
+       padding: 10px 10px;
+       width: 50%;
+       margin: auto;
+   }
+
+</style>
+
+{% block content %}
+<br>
+<div class="container post-body">
+<a href="{% url 'home' %}" class="btn btn-primary"> &#8592; Back Home</a>
+<br>
+    <div class="row center">
+            <h1 class="card-title font-weight-bold">{{blog.title}}</h1>
+            <p class="card-text"> {{ blog.body }}</p>
+             <span class="text-muted"> {{blog.date_posted.date }} by {{blog.creator}} </span>
+    </div>
+    <a href="{% url 'delete_post' blog.id %}" class="btn btn-md btn-danger">Delete</a>
+
+</div>
+
+
+
+     
+{% endblock %}
+

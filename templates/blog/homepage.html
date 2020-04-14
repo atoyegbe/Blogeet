@@ -1,0 +1,25 @@
+{% extends 'blog/main.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center">My Rants World</h1>
+    <a href="{% url 'create_blog' %}" class="btn btn-md btn-info"> &#43; Add Blog</a>
+     <div class="row">
+        {% for blog_post in blog_posts %}
+            <div class="col-lg-4 col-md-3">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{% static 'images/jeez.png' %}" alt="Card image cap">
+                    <div class="card-body">
+                    <h5 class="card-title font-weight-bold"><a href="{% url 'blog' blog_post.id %}">{{ blog_post.title}}</a></h5>
+                    <p class="card-text"> {{ blog_post.body| truncatewords:15 }}</p>
+                    <a href="{% url 'blog' blog_post.id %}" class="btn btn-primary">Read more</a> <br>
+                    <span class="text-muted"> {{blog_post.date_posted.date }} by {{blog_post.creator}} </span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <br>
+</div>
+
+{% endblock %}

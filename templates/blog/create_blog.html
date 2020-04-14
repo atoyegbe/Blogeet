@@ -1,0 +1,20 @@
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <div class="row">
+       {{ blog_form.title }}
+       <hr>
+       {{ blog_form.body }}
+       <hr>
+       {{ blog_form.creator}}
+    </div>
+        
+    
+
+    <input type="submit" value="Save">
+</form>
+
+
+{% endblock %}
