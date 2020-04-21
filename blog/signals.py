@@ -16,13 +16,4 @@ def createProfile(sender, instance, created, **kwargs):
             )
         print('Profile Created......')
 
-# post_save.connect(createProfile, sender=User)
-
-
-
-
-
-
-
-        
-        
+# post_save.connect(createProfile, sender=User)   

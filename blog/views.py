@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
-from .forms import createBlog, CreateUserForm
+from .forms import createBlog, CreateUserForm, profileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -64,7 +64,20 @@ def logoutPage(request):
      
      return redirect('login')
 
-
+@login_required(login_url='login')
+def profilePage(request):
+    users = request.user.profile
+    form = profileForm(instance=users)
+    
+    if request.method == 'POST':
+        form = profileForm(request.POST, request.FILES, instance=users)
+        if form.is_valid():
+            form.save()
+    
+    template_name = 'blog/user_page.html'
+    context = {'form': form}
+    return render(request, template_name, context)       
+            
 @login_required(login_url='login')
 def deletePost(request, blog_id):
     template_name = 'blog/delete.html'

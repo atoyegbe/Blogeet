@@ -16,7 +16,9 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
       <a href="{% url 'logout' %}" class="btn btn-info">Logout</a>
-  </nav>
+
+    <a href="{% url 'profile' %}"><button class="btn-primary">Profile</button></a>
+    </nav>
 {% endif %}
 
 {% endblock %}

@@ -10,6 +10,12 @@ class createBlog(forms.ModelForm):
         fields = ['title', 'body']
         exclude = ['creator']
 
+class profileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+        exclude = ['user']
+
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
