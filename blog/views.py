@@ -6,14 +6,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 
-# from django.views.generic import ListView, DetailView
 
 from .decorators import unauthenticated_user, allowed_user, admin_only
 
 
 
 # Create your views here.
-@login_required(login_url='login')
 def home(request):
     blog_posts = Blog.objects.all()
     context = {'blog_posts': blog_posts}
@@ -21,7 +19,6 @@ def home(request):
     
     return render(request, template_name, context)
 
-@login_required(login_url='login')
 def blogs(request, pk):
     blog = Blog.objects.get(id=pk)
     
@@ -67,6 +64,7 @@ def logoutPage(request):
      
      return redirect('login')
 
+
 @login_required(login_url='login')
 def deletePost(request, blog_id):
     template_name = 'blog/delete.html'
@@ -83,7 +81,6 @@ def deletePost(request, blog_id):
 @login_required(login_url='login')
 def create_blog(request):
     template_name = 'blog/create_blog.html'
-    
     blog_form = createBlog()
     
     if request.method == 'POST':

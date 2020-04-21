@@ -7,8 +7,8 @@ from .models import *
 class createBlog(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = '__all__'
-        exclude = ['slug']
+        fields = ['title', 'body']
+        exclude = ['creator']
 
 class CreateUserForm(UserCreationForm):
     class Meta:
