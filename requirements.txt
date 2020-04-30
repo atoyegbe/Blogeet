@@ -2,3 +2,4 @@ django
 djangorestframework
 django-widget-tweaks
 gunicorn
+whitenoise 
