@@ -1,4 +1,4 @@
 django
-rest_framework
+djangorestframework
 widget_tweaks
 gunicorn
