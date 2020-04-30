@@ -14,7 +14,6 @@ SECRET_KEY = '=u()noya*+4#@jksz7jk@4ubtsj1hus0+^o0yr%p$fn9!ym46+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-DEBUG_COLLECTSTATIC=1
 DISABLE_COLLECTSTATIC=1
 
 ALLOWED_HOSTS = []
@@ -44,8 +43,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # Simplified static file serving.
-    # https://warehouse.python.org/project/whitenoise/
     'whitenoise.middleware.WhiteNoiseMiddleware',
  
 ]
@@ -141,7 +138,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
