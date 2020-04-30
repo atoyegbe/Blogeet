@@ -25,7 +25,6 @@ SECRET_KEY = '=u()noya*+4#@jksz7jk@4ubtsj1hus0+^o0yr%p$fn9!ym46+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-heroku config:set DEBUG_COLLECTSTATIC=1
 
 ALLOWED_HOSTS = []
 
