@@ -1,0 +1,11 @@
+{% block content %}
+<div class="col-md-9">
+    <div class="card card-body">
+        <form enctype="multipart/form-data" method="POST" action="/profile/">
+            {% csrf_token %}
+            {{form.as_p}}
+        </from>
+        <input  class="btn btn-primary" value="Submit" name="Update-Information" type="submit">
+    </div>
+</div>
+{% endblock %}

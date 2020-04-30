@@ -1,19 +1,22 @@
 from django.shortcuts import render, redirect
 from .models import *
+from django.views import generic
+from django.utils import timezone
+
 from .forms import createBlog, CreateUserForm, profileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
-
-
 from .decorators import unauthenticated_user, allowed_user, admin_only
 
 
 
 # Create your views here.
 def home(request):
-    blog_posts = Blog.objects.all()
+    blog_posts = Blog.objects.filter(
+            date_posted__lte=timezone.now()
+            ).order_by('-date_posted')[:5]
+    
     context = {'blog_posts': blog_posts}
     template_name = 'blog/homepage.html'
     
@@ -66,8 +69,7 @@ def logoutPage(request):
 
 @login_required(login_url='login')
 def profilePage(request):
-    users = request.user.profile
-    form = profileForm(instance=users)
+    form = profileForm()
     
     if request.method == 'POST':
         form = profileForm(request.POST, request.FILES, instance=users)
@@ -75,7 +77,7 @@ def profilePage(request):
             form.save()
     
     template_name = 'blog/user_page.html'
-    context = {'form': form}
+    context = {'form': form }
     return render(request, template_name, context)       
             
 @login_required(login_url='login')
@@ -91,6 +93,21 @@ def deletePost(request, blog_id):
     
     return render(request, template_name, context)
 
+@login_required(login_url='login')
+def profileSetting(request):
+    users = request.user.profile
+    form = profileForm(instance=users)
+    
+    if request.method == 'POST':
+        form = profileForm(request.POST, request.FILES, instance=users)
+        if form.is_valid():
+            form.save()
+    
+    template_name = 'blog/account_settings.html'
+    context = {'form': form}
+    return render(request, template_name, context) 
+    
+    
 @login_required(login_url='login')
 def create_blog(request):
     template_name = 'blog/create_blog.html'

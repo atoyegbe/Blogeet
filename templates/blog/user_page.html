@@ -1,36 +1,57 @@
-{% extends 'blog/main.html'%}
 {% load static %}
-{% block content %}
-<style>
-  .profile-pic{
-      max-width: 200px;
-      max-height: 200px;
-      margin: 0 auto;
-      border-radius: 50%;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
 
+  <body>
+    {% block content %}
+    <style>
+      .profile-pic {
+        max-width: 200px;
+        max-height: 200px;
+        margin: 0 auto;
+        border-radius: 50%;
+      }
+    </style>
+      <br>
+      <div class="row">
+        <div class="col-md-3">
+            <div><a href="{% url 'settings' %}"></a></div>
+          <div class="card card-body">
+            <a href="{% url 'home' %}" class="btn btn-primary"> &#8592; Home</a>
+            <hr />
+            <h3 style="text-align: center;">Profile Page</h3>
+            <hr />
+            <img
+              class="profile-pic"
+              src="{{request.user.profile.profile_pic.url}}"
+            />
+            <hr />
+            Name: {{request.user.username}}
+            <hr />
+            Email: {{request.user.email}}
+            <hr />
+            Phone: {{request.user.phone}}
+          </div>
+        </div>
 
-<br>
-<div class="row">
-  <div class="col-md-3">
-      <div class="card card-body">
-          <a href="{% url 'home' %}" class="btn btn-primary"> &#8592; Back to settings</a>
-          <hr>
-          <h3 style="text-align: center">Account Settings</h3>
-           <hr>
-           <img class="profile-pic" src="{{request.user.profile.profile_pic.url}}" >
+        <div class="col-md-9">
+            <div class="card card-body">
+                <h2>My Posts</h2>
+            </div>
+        </div>
       </div>
-  </div>
 
-  <div class="col-md-9">
-      <div class="card card-body">
-          <form enctype="multipart/form-data" method="POST" action="/profile/">
-              {% csrf_token %}
-              {{form.as_p}}
-          </from>
-          <input  class="btn btn-primary" value="Submit" name="Update-Information" type="submit">
-      </div>
-  </div>
-</div>
-{% endblock %}
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,4 @@
+django
+rest_framework
+widget_tweaks
+gunicorn

@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content:  center;
+    align-items: center;
+  }
+
+form{
+    border-style: dashed;
+    padding: 30px;
+    border-radius: 20px;
+    margin-top: 50px;
+    width: 500px;
+  }
+
+  .btn {
+    margin: 10px;
+  }
+
+.form-control {
+    padding: 10px;
+    border: 1px solid burlywood;
+    margin: 6px;
+    width: 250px;
+}

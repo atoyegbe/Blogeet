@@ -6,6 +6,12 @@
         font-weight: 900;
 
     }
+    .profile-pic{
+      max-width: 100px;
+      max-height: 100px;
+      margin: 0 auto;
+      border-radius: 50%;
+  }
 </style>
 {% if user.is_authenticated %}
   <nav class="navbar navbar-light bg-light">
@@ -15,9 +21,10 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
+      <a href="{% url 'create_blog' %}" class="btn btn-md btn-info"> &#43; Write a post </a>
       <a href="{% url 'logout' %}" class="btn btn-info">Logout</a>
-
-    <a href="{% url 'profile' %}"><button class="btn-primary">Profile</button></a>
+     
+    <a href="{% url 'profile' %}"><img class="profile-pic" src="{{request.user.profile.profile_pic.url}}" alt="profile" ></a>
     </nav>
 {% endif %}
 

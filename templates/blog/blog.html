@@ -17,10 +17,15 @@
 <br>
     <div class="row center">
             <h1 class="card-title font-weight-bold">{{blog.title}}</h1>
-            <p class="card-text"> {{ blog.body }}</p>
-             <span class="text-muted"> {{blog.date_posted.date }} by {{ request.creator }} </span>
+            <div>
+             <p class="card-text"> {{ blog.body }}</p>
+             <br>
+
+            </div>
     </div>
-    <a href="{% url 'delete_post' blog.id %}" class="btn btn-md btn-danger">Delete</a>
+    {% if user.is_staff %}
+        <a href="{% url 'delete_post' blog.id %}" class="btn btn-md btn-danger">Delete</a>
+    {% endif %}
 
 </div>
 
