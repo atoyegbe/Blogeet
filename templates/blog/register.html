@@ -12,6 +12,9 @@
   <body>
     {% block content %}
     {% load widget_tweaks %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
     <div class="container">
       <form method="POST">
         {% csrf_token %}

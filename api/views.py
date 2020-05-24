@@ -78,3 +78,4 @@ def profileDetail(request, pk):
     
     return Response(serializer.data)
 
+ 

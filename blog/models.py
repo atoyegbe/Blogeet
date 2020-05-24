@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True)
-    email = models.CharField(max_length=200, null=True)
+    email = models.EmailField(max_length=200, null=True)
     profile_pic = models.ImageField(default="download.png", null=True, blank=True)
     phone = models.IntegerField(null=True)
     date_created= models.DateTimeField(auto_now_add=True)
@@ -24,6 +24,7 @@ class Blog(models.Model):
     
     def __str__(self):
         return self.title
+    
 
         
     

@@ -15,5 +15,4 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myblog.settings')
 
 application = get_wsgi_application()
 
-web: gunicorn myproject.wsgi
 

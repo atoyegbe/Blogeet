@@ -3,24 +3,38 @@ from .models import *
 from django.views import generic
 from django.utils import timezone
 
-from .forms import createBlog, CreateUserForm, profileForm
+from .forms import createBlog, CreateUserForm, profileForm, SuggestionForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_user, admin_only
-
+from .filters import blogFilter
 
 
 # Create your views here.
 def home(request):
-    blog_posts = Blog.objects.filter(
+    blog = Blog.objects.all()
+    blog_posts = blog.filter(
             date_posted__lte=timezone.now()
             ).order_by('-date_posted')[:5]
     
-    context = {'blog_posts': blog_posts}
+    
+    myFilter = blogFilter(request.GET, queryset=blog)
+    searchResult = myFilter.qs 
+    
+    context = {'blog_posts': blog_posts, 'myFilter': myFilter, 'searchResult': searchResult}
     template_name = 'blog/homepage.html'
     
     return render(request, template_name, context)
+
+def searchView(request):
+    context = {'myFilter': myFilter, 'searchResult': searchResult}
+    template_name = 'blog/navbar.html'
+    
+    return render(request, template_name, context)
+    
+    
+    
 
 def blogs(request, pk):
     blog = Blog.objects.get(id=pk)
@@ -69,15 +83,15 @@ def logoutPage(request):
 
 @login_required(login_url='login')
 def profilePage(request):
+    blogs = Blog.objects.filter(creator=request.user, date_posted__lte=timezone.now()).order_by('-date_posted')
     form = profileForm()
-    
     if request.method == 'POST':
         form = profileForm(request.POST, request.FILES, instance=users)
         if form.is_valid():
             form.save()
     
     template_name = 'blog/user_page.html'
-    context = {'form': form }
+    context = {'form': form , 'blogs' : blogs}
     return render(request, template_name, context)       
             
 @login_required(login_url='login')
@@ -102,24 +116,28 @@ def profileSetting(request):
         form = profileForm(request.POST, request.FILES, instance=users)
         if form.is_valid():
             form.save()
+            return redirect('profile')
     
-    template_name = 'blog/account_settings.html'
+    template_name = 'blog/account_setting.html'
     context = {'form': form}
     return render(request, template_name, context) 
     
-    
+
 @login_required(login_url='login')
 def create_blog(request):
     template_name = 'blog/create_blog.html'
-    blog_form = createBlog()
+    form = createBlog()
     
     if request.method == 'POST':
-        blog_form = createBlog(request.POST)
-        if blog_form.is_valid():
-            blog_form.save()
+        form = createBlog(request.POST)
+        if form.is_valid():
+            new_blog = form.save(commit=False)
+            new_blog.creator = request.user
+            new_blog.save()
             return redirect('home')
     
-    context = {'blog_form': blog_form}
+    context = {'form': form}
     
         
     return render(request, template_name, context)
+

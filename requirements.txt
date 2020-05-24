@@ -1,5 +1,4 @@
 django
 djangorestframework
 django-widget-tweaks
-gunicorn
-whitenoise 
+bootstrap4

@@ -7,21 +7,28 @@
        width: 50%;
        margin: auto;
    }
+   .creator {
+       margin-left: -300px;
+   }
+   
+   
 
 </style>
 
 {% block content %}
 <br>
-<div class="container post-body">
+<div class="container">
 <a href="{% url 'home' %}" class="btn btn-primary"> &#8592; Back Home</a>
-<br>
-    <div class="row center">
+<hr>
+    <div class="row dark">
             <h1 class="card-title font-weight-bold">{{blog.title}}</h1>
-            <div>
+            <div class="post-body">
              <p class="card-text"> {{ blog.body }}</p>
              <br>
-
+         
             </div>
+            <p class="creator text-muted"> published by -    
+                {{blog.creator}}</p>
     </div>
     {% if user.is_staff %}
         <a href="{% url 'delete_post' blog.id %}" class="btn btn-md btn-danger">Delete</a>

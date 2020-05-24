@@ -13,10 +13,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '=u()noya*+4#@jksz7jk@4ubtsj1hus0+^o0yr%p$fn9!ym46+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-DISABLE_COLLECTSTATIC=1
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '5432',
+]
 
 
 # Application definition
@@ -33,6 +34,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'widget_tweaks',
     'django_heroku',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +81,7 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 
 # Password validation

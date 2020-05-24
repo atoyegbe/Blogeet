@@ -1,31 +1,50 @@
 {% extends 'blog/main.html' %}
 {% load static %}
 {% block content %}
+<style>
+    .dark {
+       background-color: coral;
+   }
+
+   @media screen {
+       .row {
+           margin-left: 50px;
+       }
+   }
+   
+</style>
 <div class="container">
-    <h1 class="text-center">Trending Posts</h1>
+    <br>
     {% if not user.is_authenticated  %}
+    <nav class="navbar navbar-dark bg-dark">
        <a href="{% url 'login' %}" class="btn btn-md btn-primary">Login</a>
+       <a href="{% url 'logout' %}" class="btn btn-md btn-info"> Logout</a>
+    </nav>
     {% endif %}
+    <br>
+    <h1 class="text-center">
+        Latest Post
+       </h1>
+    <hr>
     
-    
-     <div class="row">
+    <div class="row">
         {% for blog_post in blog_posts %}
-            <div class="col-lg-4 col-md-3">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{% static 'images/jeez.png' %}" alt="Card image cap">
+            <div class="col-lg-4  col-md-2">
+                <div class="card bg-dark" style="width: 18rem; margin-bottom: 20px; color: aliceblue;">
                     <div class="card-body">
                     <h5 class="card-title font-weight-bold"><a href="{% url 'blog' blog_post.id %}">{{ blog_post.title}}</a></h5>
-                    <p class="card-text"> {{ blog_post.body| truncatewords:15 }}</p>
+                    <p class="card-text"> {{ blog_post.body| truncatewords:10 }}</p>
                     <a href="{% url 'blog' blog_post.id %}" class="btn btn-primary">Read more</a> <br>
-                    <span class="text-muted"> {{blog_post.date_posted.date }}
+                    <span class="text-muted"> {{blog_post.date_posted.date }} by {{blog_post.creator}}
                     </span>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-    </div>
     <br>
+    {% endfor %}
+    </div>
 </div>
+
 
 {% endblock %}
 
