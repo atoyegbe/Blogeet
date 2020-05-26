@@ -16,7 +16,7 @@ SECRET_KEY = '=u()noya*+4#@jksz7jk@4ubtsj1hus0+^o0yr%p$fn9!ym46+'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '5432',
+    'deyemieblog.herokuapp.com',
 ]
 
 
@@ -141,8 +141,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 
-django_heroku.settings(locals())
+import dj_database_url
+prob_db = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prob_db)

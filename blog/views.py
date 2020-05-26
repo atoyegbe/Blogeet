@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.views import generic
 from django.utils import timezone
@@ -27,17 +27,13 @@ def home(request):
     
     return render(request, template_name, context)
 
-def searchView(request):
-    context = {'myFilter': myFilter, 'searchResult': searchResult}
-    template_name = 'blog/navbar.html'
-    
-    return render(request, template_name, context)
     
     
     
 
 def blogs(request, pk):
     blog = Blog.objects.get(id=pk)
+    # blog = get_object_or_404(Blog, slug=slug)
     
     context = {'blog': blog}
     template_name = 'blog/blog.html'
@@ -95,10 +91,10 @@ def profilePage(request):
     return render(request, template_name, context)       
             
 @login_required(login_url='login')
-def deletePost(request, blog_id):
+def deletePost(request, pk):
     template_name = 'blog/delete.html'
     
-    blog_post = Blog.objects.get(id=blog_id)
+    blog_post = Blog.objects.get(id=pk)
     if request.method == 'POST':
         blog_post.delete()
         return redirect('home')

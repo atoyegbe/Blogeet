@@ -61,18 +61,25 @@
                   </div>
                 </div>
               </div>
-            {% for blog in blogs %}
-            <div class="col-lg-4 col-md-3">
-              <div class="card" style="width: 18rem; min-height:200px;">
-                <div class="card-body">
-                  <h5 class="card-title font-weight-bold">{{blog.title}}</h5>
-                  <p class="card-text">{{ blog.body| truncatewords:15 }}</p>
-                  <span class="text-muted"> {{blog.date_posted.date }} </span>
+            {% if blogs is None %}
+              <div>
+                Start with writing one
+              </div>
+            {% else %}
+
+              {% for blog in blogs %}
+              <div class="col-lg-4 col-md-3">
+                <div class="card" style="width: 18rem; min-height:200px;">
+                  <div class="card-body">
+                    <h5 class="card-title font-weight-bold">{{blog.title}}</h5>
+                    <p class="card-text">{{ blog.body| truncatewords:15 }}</p>
+                    <span class="text-muted"> {{blog.date_posted.date }} </span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <br>
-            {% endfor %}
+              <br>
+              {% endfor %}
+            {% endif %}
 
           </div>
           </div>
