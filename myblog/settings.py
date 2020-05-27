@@ -15,6 +15,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'deyemieblog.herokuapp.com',
+    '127.0.0.1',
 ]
 
 

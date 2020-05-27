@@ -17,11 +17,9 @@ def home(request):
             date_posted__lte=timezone.now()
             ).order_by('-date_posted')[:5]
     
+
     
-    myFilter = blogFilter(request.GET, queryset=blog)
-    searchResult = myFilter.qs 
-    
-    context = {'blog_posts': blog_posts, 'myFilter': myFilter, 'searchResult': searchResult}
+    context = {'blog_posts': blog_posts }
     template_name = 'blog/homepage.html'
     
     return render(request, template_name, context)
