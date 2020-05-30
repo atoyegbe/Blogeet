@@ -16,6 +16,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'deyemieblog.herokuapp.com',
     '127.0.0.1',
+    'localhost',
 ]
 
 
@@ -28,8 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     'blog.apps.BlogConfig',
+    'widget_tweaks',
     'bootstrap4',
 ]
 
@@ -72,11 +73,16 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'HOST': 'localhost',
+       'NAME': 'blog',
+       'USER': 'adeyemi',
+       'PASSWORD': 'atoyegbe45',
+       'PORT': '5432',
+   }
 }
+
 
 
 
