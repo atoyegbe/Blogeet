@@ -44,7 +44,9 @@
           <a href="{% url 'login' %}">Login</a>
 
           </span>
-          
+          {% for message in messages %}
+        <p>{{message}}</p>
+    {% endfor %}
         </div>
       </form>
     </div>
