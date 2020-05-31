@@ -30,14 +30,11 @@
             <p class="creator text-muted"> published by -    
                 {{blog.creator}}</p>
     </div>
-    {% if user.is_staff %}
+    {% if request.user == blog.creator %}
         <a href="{% url 'delete_post' blog.id %}" class="btn btn-md btn-danger">Delete</a>
     {% endif %}
 
 </div>
 
-
-
-     
 {% endblock %}
 

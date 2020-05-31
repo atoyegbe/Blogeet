@@ -13,7 +13,6 @@ def createProfile(sender, instance, created, **kwargs):
             user=instance,
             name=instance.username
             )
-        print('Profile Created......')
         
 
 
