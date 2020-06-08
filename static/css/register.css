@@ -1,24 +1,11 @@
+body {
+    background: linear-gradient(to right, rgb(176, 0, 230), rgb(197, 51, 255));
+    color: whitesmoke;
+}
+
 .container {
     display: flex;
-    justify-content:  center;
+    justify-content: center;
     align-items: center;
-  }
-
-form{
-    border-style: dashed;
-    padding: 30px;
-    border-radius: 20px;
-    margin-top: 50px;
-    width: 500px;
-  }
-
-  .btn {
-    margin: 10px;
-  }
-
-.form-control {
-    padding: 10px;
-    border: 1px solid burlywood;
-    margin: 6px;
-    width: 250px;
+    margin-top: 200px;
 }

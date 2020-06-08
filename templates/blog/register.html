@@ -4,52 +4,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Register</title>
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
   </head>
 
   <body>
-    {% block content %}
-    {% load widget_tweaks %}
     {% load bootstrap4 %}
     {% bootstrap_css %}
     {% bootstrap_javascript jquery='full' %}
     <div class="container">
-      <form method="POST">
-        {% csrf_token %}
-           <label for="username">Username: </label>
-           {{form.username | add_class:"form-control"}}
-
-
-          <label for="email">Email: </label>
-          {{form.email | add_class:"form-control"}}
-
-
-          <label for="password1">Password</label>
-          {{form.password1 | add_class:"form-control"}}
-
-
-          <label for="password2">Confirm Password</label>
-          {{form.password2 | add_class:"form-control"}}
-
-          <input
-            type="submit"
-            value="Register"
-            class="btn btn-primary"
-          />
-
-          <span>
-            <p>Already have an account?</p>
-          <a href="{% url 'login' %}">Login</a>
-
-          </span>
-          {% for message in messages %}
-        <p>{{message}}</p>
-    {% endfor %}
-        </div>
-      </form>
+      <div class="row">
+        <form method="POST">
+          {% csrf_token %}
+            {% bootstrap_form form show_label=False show_help=False %}
+            {% buttons %}
+            <button type="submit" class="btn btn-primary">
+              Register
+            </button>
+          {% endbuttons %}
+            <span>
+              <p>Already have an account?</p>
+              <a href="{% url 'login' %}">Login</a>
+            </span>
+        </form>
+      </div>
     </div>
-    {% endblock %}
   </body>
 </html>

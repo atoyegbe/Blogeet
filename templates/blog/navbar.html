@@ -15,11 +15,12 @@
 </style>
 {% if user.is_authenticated %}
   <nav class="navbar navbar-dark bg-dark">
+    <div>
+      <a href="{% url 'profile' %}"><img class="profile-pic" src="{{request.user.profile.profile_pic.url}}" alt="profile" ></a>
       <p class="users"> Welcome {{ request.user|capfirst }} </p>
-      <a href="{% url 'create_blog' %}" class="btn btn-md btn-info"> &#43; Write a post </a>
+    </div>
+    <span class="glyphicon glyphicon-plus"></span>
       <a href="{% url 'logout' %}" class="btn btn-info">Logout</a>
-     
-    <a href="{% url 'profile' %}"><img class="profile-pic" src="{{request.user.profile.profile_pic.url}}" alt="profile" ></a>
   </nav>
 {% endif %}
 

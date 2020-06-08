@@ -62,6 +62,7 @@ def loginPage(request):
         else:
             messages.info(request, 'username OR password is incorrect')
     
+    
     context = {}
     return render(request, 'blog/login.html', context)
 
