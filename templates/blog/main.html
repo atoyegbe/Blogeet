@@ -5,20 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>deyemie.py</title>
+    <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
     {% load bootstrap4 %}
     {% bootstrap_css %}
     {% bootstrap_javascript jquery='full' %}
     {% include 'blog/navbar.html'%}
-    {% block content %}
+    <div class="container-fluid">
+        {% block content %}
 
-      
-
-
-    {% endblock %}
-
+        {% endblock %}
+    </div>
 </body>
 <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
 </html>

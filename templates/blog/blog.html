@@ -1,40 +1,29 @@
-{% extends 'blog/main.html' %}
-{% load static %}
+{% load static %} 
+{% load bootstrap4 %} 
+{% bootstrap_css %} 
+{% bootstrap_javascript jquery='full' %}
 <style>
-   .post-body {
-       border: 2px dotted black;
-       padding: 10px 10px;
-       width: 50%;
-       margin: auto;
-   }
-   .creator {
-       margin-left: -300px;
-   }
-   
-   
-
+  .post-body {
+    border: 2px dotted black;
+    padding: 10px 10px;
+    width: 50%;
+    margin: auto;
+  }
+  .creator {
+    margin-left: 300px;
+  }
 </style>
 
-{% block content %}
-<br>
+<br />
 <div class="container">
-<a href="{% url 'home' %}" class="btn btn-primary"> &#8592; Back Home</a>
-<hr>
-    <div class="row dark">
-            <h1 class="card-title font-weight-bold">{{blog.title}}</h1>
-            <div class="post-body">
-             <p class="card-text"> {{ blog.body }}</p>
-             <br>
-         
-            </div>
-            <p class="creator text-muted"> published by -    
-                {{blog.creator}}</p>
+  <a href="{% url 'home' %}" class="btn btn-primary"> &#8592; Back Home</a>
+  <hr />
+  <h1 class="card-title text-center">{{blog.title}}</h1>
+  <div class="row dark">
+    <div class="post-body">
+      <p class="card-text">{{ blog.body }}</p>
+
+      <p class="creator text-muted">published by - {{blog.creator}}</p>
     </div>
-    {% if request.user == blog.creator %}
-        <a href="{% url 'delete_post' blog.id %}" class="btn btn-md btn-danger">Delete</a>
-    {% endif %}
-
+  </div>
 </div>
-
-{% endblock %}
-

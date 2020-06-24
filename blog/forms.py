@@ -1,14 +1,15 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from tinymce.widgets import TinyMCE
 from .models import *
 
 
 class createBlog(forms.ModelForm):
+    body = forms.Textarea()
     class Meta:
         model = Blog
-        fields = ['title', 'body']
-        exclude = ['creator']
+        exclude = ['creator', 'slug']
 class profileForm(forms.ModelForm):
     class Meta:
         model = Profile

@@ -2,6 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 
 class Profile(models.Model):
@@ -18,9 +19,8 @@ class Profile(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=100, null=False, unique=True)
     slug = models.SlugField(max_length=100, unique=True, null=True)
-    body = models.TextField()
+    body = HTMLField()
     creator = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    profile_pic = models.ImageField(default="jeez.png", null=True, blank=True)
     date_posted= models.DateTimeField(auto_now_add=True)
     
     def __str__(self):

@@ -1,7 +1,16 @@
-{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tiny.cloud/1/b6rboq3j0r04qt0tuhhoze5dw0ohalq0c9b8o16aba2rrsuk/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="{% static 'js/tinymce/tinymce.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/tinymce/custom.js' %}" ></script>
+</head>
+<body>
 {% load bootstrap4 %}
 {% bootstrap_css %}
-
 <div class="container">
     <br>
     <a href="{% url 'home' %}" class="btn btn-primary"> &#8592; Back Home</a>
@@ -10,17 +19,9 @@
 
         <form action="" method="POST">
             {% csrf_token %}
-            {% bootstrap_label content %}
-            {% bootstrap_form form %}
-            {% buttons %}
-            <button type="submit" class="btn btn-primary">
-              Submit
-            </button>
-          {% endbuttons %}
-        </form>
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-primary" value="Submit">
         </div>
 </div>
-
-
-
-{% endblock %}
+</body>
+</html>
