@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'widget_tweaks',
     'bootstrap4', 
-    'tinymce',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -144,8 +144,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-TINYMCE_JS_URL = os.path.join(MEDIA_URL, "path/to/tiny_mce/tinymce.js")
-TINYMCE_JS_ROOT = os.path.join(MEDIA_ROOT, "path/to/tinymce")
+
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

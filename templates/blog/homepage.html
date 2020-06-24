@@ -29,7 +29,7 @@
                 <div class="card bg-dark" style="width: 18rem; height: 200px; margin-bottom: 20px; color: aliceblue;">
                     <div class="card-body">
                     <h5 class="card-title font-weight-bold"><a href="{% url 'blog' blog_post.id %}">{{ blog_post.title}}</a></h5>
-                    <p class="card-text"> {{ blog_post.body|truncatechars:40}}</p>
+                    <p class="card-text"> {{ blog_post.body|safe|truncatechars:40}}</p>
                     <a href="{% url 'blog' blog_post.id %}" class="btn btn-primary">Read more</a> <br>
                     <span class="text-muted"> {{blog_post.date_posted.date }} by {{blog_post.creator}}
                     </span>

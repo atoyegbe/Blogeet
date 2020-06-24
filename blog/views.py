@@ -3,7 +3,7 @@ from .models import *
 from django.views import generic
 from django.utils import timezone
 
-from .forms import createBlog, CreateUserForm, profileForm, SuggestionForm
+from .forms import createBlog, CreateUserForm, profileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required

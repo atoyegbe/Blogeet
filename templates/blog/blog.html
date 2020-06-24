@@ -21,7 +21,7 @@
   <h1 class="card-title text-center">{{blog.title}}</h1>
   <div class="row dark">
     <div class="post-body">
-      <p class="card-text">{{ blog.body }}</p>
+      <p class="card-text">{{ blog.body | safe }}</p>
 
       <p class="creator text-muted">published by - {{blog.creator}}</p>
     </div>
